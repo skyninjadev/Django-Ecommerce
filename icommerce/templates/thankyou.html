@@ -1,0 +1,41 @@
+{% extends "basic.html" %}
+{% block title %}
+Order Sucessfull
+{% endblock title %}
+{% block body %}
+
+    
+    <div class="bg-light py-3"> 
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <span class="icon-check_circle display-3 text-success"></span>
+            <h2 class="display-3 text-black" id="thankyou">Thank you!</h2><br /><br />
+            <h4>If you Didn't found Your Mail containing the Download Links Be sure to check Your Spam Folder.</h4>
+            <p class="lead mb-5" id="thankyoubody">You order was successfuly completed.</p>
+            <p>Your Order has been Placed and You can now Download Your Software(s) through the Links Given Below : </p>
+            <div>
+            <p><a href="{{item.product0}}">{{name.product0}}</a></p>
+            <p><a href="{{item.product1}}">{{name.product1}}</a></p>
+            <p><a href="{{item.product3}}">{{name.product3}}</a></p>
+            <p><a href="{{item.product4}}">{{name.product4}}</a></p>
+            <p><a href="{{item.product5}}">{{name.product5}}</a></p>
+            <p><a href="{{item.product6}}">{{name.product6}}</a></p>
+            <p><a href="{{item.product7}}">{{name.product7}}</a></p>
+            <p><a href="{{item.product8}}">{{name.product8}}</a></p>
+            <p><a href="{{item.product9}}">{{name.product9}}</a></p>
+            <p><a href="{{item.product10}}">{{name.product10}}</a></p>
+            </div>
+            <p><a href="/shop" class="btn btn-sm height-auto px-4 py-3 btn-primary">Back to shop</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script>
+localStorage.clear();
+</script>
+
+{% endblock body %}

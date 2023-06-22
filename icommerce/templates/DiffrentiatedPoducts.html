@@ -1,0 +1,151 @@
+{% extends "basic.html" %} {% block title %}{{head}}{% endblock title %}
+{% block body %} {% load static %}
+
+<div class="bg-light py-3">
+<div class="site-section my-3">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-9 order-2 order-lg-1">
+        <div class="row align">
+          <div class="col-md-12 mb-5">
+            <div class="float-md-left">
+              <h2 class="text-black h5">Shop Within {{head}}</h2>
+            </div>
+            <div class="d-flex">
+              <div class="dropdown mr-1 ml-md-auto">
+                <button
+                  type="button"
+                  class="btn btn-white btn-sm dropdown-toggle px-4"
+                  id="dropdownMenuOffset"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Latest
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Latest</a>
+                  <a class="dropdown-item" href="#">Yesterday</a>
+                  <a class="dropdown-item" href="#">Older</a>
+                </div>
+              </div>
+              <div class="btn-group">
+                <form action="/shop/" method="post">{% csrf_token %}
+                <button
+                  type="button"
+                  class="btn btn-white btn-sm dropdown-toggle px-4"
+                  id="dropdownMenuReference"
+                  data-toggle="dropdown"
+                >
+                  Reference
+                </button>
+                <div
+                  class="dropdown-menu"
+                  aria-labelledby="dropdownMenuReference"
+                >
+                  <a class="dropdown-item" href="#">Relevance</a>
+                  <a class="dropdown-item" href="#">Name, A to Z</a>
+                  <a class="dropdown-item" href="#">Name, Z to A</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Price low to high</a>
+                  <a class="dropdown-item" href="#">Price high to low</a>
+                </div>
+                <button class="btn btn-primary mx-2">Apply Filters</button>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="products-wrap border-top-0">
+            <div class="container-fluid">
+              <div class="row no-gutters products">
+                {% for Prods in prod %}
+                <div class="col-6 col-md-6 col-lg-6 border-top my-2">
+                  <a href="/view/{{Prods.Product_Name}}/{{Prods.id}}" class="item mx-2">
+                  <img
+                    src="/media/{{Prods.image}}"
+                    alt="Image"
+                    class="img-fluid" style="height: 19em; width: 24em;"
+                  />
+                  <div class="item-info" style="margin-top: 2em;">
+                    <h3 id="namep{{Prods.id}}">{{Prods.Product_Name}}</h3>
+                    <span class="collection d-block"
+                      >{{Prods.Cateogary}}</span
+                    >
+                    <strong class="price" id="pricep{{Prods.id}}">Price : Rs. {{Prods.Price}}</strong><br />
+                    </a>
+                    <button class="btn btn-primary my-2 addtoCart" id="p{{Prods.id}}">Add to Cart</button>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 order-1 order-lg-2 mb-5 mb-lg-0">
+        <div class="border p-4 mb-4">
+          <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-1">
+              <a href="/WebApplications/" class="d-flex"
+                ><span>Web Apps</span>
+                <span class="text-black ml-auto">({{web}})</span></a
+              >
+            </li>
+            <li class="mb-1">
+              <a href="/GraphicalApplications/" class="d-flex"
+                ><span>Graphical Applications</span>
+                <span class="text-black ml-auto">({{desktop}})</span></a
+              >
+            </li>
+            <li class="mb-1">
+              <a href="/ConsoleApplications/" class="d-flex"
+                ><span>Console Applications</span>
+                <span class="text-black ml-auto">({{console}})</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="title-section text-center col-12">
+        <h2 class="text-uppercase">The Collections</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 block-3 products-wrap" style="height: -11em;">
+        <div class="nonloop-block-3 owl-carousel">
+          {% for catprods in allprods %}
+          <div class="product">
+            <a href="/view/{{catprods.Product_Name}}/{{catprods.id}}" class="item">
+              <img
+                src="/media/{{catprods.image}}"
+                alt="Image"
+                class="img-fluid" style="height : 16em;"
+              />
+              <div class="item-info">
+                <a href="/view/{{catprods.Product_Name}}/{{catprods.id}}" class="item">
+                <h3>{{catprods.Product_Name}}</h3>
+                <span class="collection d-block">{{catprods.Cateogary}}</span>
+                <strong class="price" id="pricep{{catprods.id}}">Price : Rs. {{catprods.Price}}</strong>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}

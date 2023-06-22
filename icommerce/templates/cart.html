@@ -1,0 +1,123 @@
+{% extends "basic.html" %}
+{% block title %}
+Cart
+{% endblock title %}
+ {% block body %}
+
+<div class="bg-light py-3">
+  
+
+<div class="site-section">
+  <div class="container">
+    <div class="row mb-5">
+      <form class="col-md-12" method="post">
+        <div class="site-blocks-table">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="product-thumbnail">Sr. No.</th>
+                <th class="product-name">Product</th>
+                <th class="product-price">Price</th>
+              </tr>
+            </thead>
+
+            <tbody id="items">
+              <!-- <tr>
+                    <td class="product-name">
+                      <h2 class="h5 text-black" id="name">The Shoe</h2>
+                    </td>
+                    <td id="price">$49.00</td>
+                    <td id="total">$49.00</td>
+                  </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row mb-5">
+          <div class="col-md-6 mb-3 mb-md-0">
+            <button class="btn btn-primary btn-sm btn-block" onclick="clearCart()">
+              Clear Cart
+            </button>
+          </div>
+          <div class="col-md-6">
+            <a href="/shop/" class="btn btn-outline-primary btn-sm btn-block">
+              Continue Shopping
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 pl-5">
+        <div class="row justify-content-end">
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-12 text-right border-bottom mb-5">
+                <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <span class="text-black">Subtotal</span>
+              </div>
+              <div class="col-md-6 text-right" id="pricee"></div>
+            </div>
+            <span id="hacking"></span>
+            <div class="row mb-5">
+              <div class="col-md-6">
+                <span class="text-black">Total</span>
+              </div>
+              <div class="col-md-6 text-right" id="totalPrice"></div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <a href="/checkout/" class="btn btn-primary btn-lg btn-block"
+                  onclick="checkout()"
+                  name="checkout"
+                >
+                  Proceed To Checkout
+              </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  if (localStorage.getItem("cart") == null) {
+    var cart = {};
+  } else {
+    cart = JSON.parse(localStorage.getItem("cart"));
+  }
+var i = 1;
+var totalPrice = 0;
+  for (item in cart) {
+    let name = cart[item][1];
+    let qty = cart[item][0];
+    let price = cart[item][2];
+    mystr = `<tr>
+                    <td class="product-thumbnail">
+                      <h2 class="h5 text-black" id="helo">${i}</h2>
+                    </td>
+                    <td class="product-name">
+                      <h2 class="h5 text-black" id="name">${name}</h2>
+                    </td>
+                    <td id="price">${price}</td>
+                  </tr>`;
+    document.getElementById('items').innerHTML += mystr;
+    totalPrice = totalPrice + Number(price.split(' ')[1]);
+    document.getElementById('pricee').innerHTML = `<strong class="text-black">Rs. ${totalPrice}</strong>`
+
+    i = i + 1;
+  }
+   document.getElementById('totalPrice').innerHTML = `<strong class="text-black" id="totalPricee">Rs. ${totalPrice}</strong>`
+
+</script>
+
+{% endblock body %}

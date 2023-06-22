@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock title %} | RushX</title>
+    <meta charset="utf-8" />
+    {% load static %}
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link href="{% static 'images/iconSmall.png' %}" rel="Assassin's Home" />
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="{% static 'images/iconSmall.png' %}"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Rubik:400,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}" />
+
+    {% comment %} "{{static('/appname/css/cssfilename.css')}}" {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/owl.theme.default.min.css' %}"
+    />
+
+    {% comment %}
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}" />
+    {% endcomment %}
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="site-wrap">
+      <div class="site-navbar bg-white py-2">
+        <div class="search-wrap">
+          <div class="container">
+            <a href="#" class="search-close js-search-close"
+              ><span class="icon-close2"></span
+            ></a>
+            <form onsubmit="objecturi()" name="search" method="post">
+              {% csrf_token %}
+              <input
+                type="text"
+                class="form-control"
+                id="search"
+                placeholder="Please Type the Cateogary...."
+              />
+              <script>
+                function objecturi() {
+                  let searchObject = document.getElementById("search").value;
+                  let objj = "/search/" + searchObject;
+                  document.search.action = objj;
+                }
+              </script>
+            </form>
+          </div>
+        </div>
+
+        <div class="">
+          <div class="container">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="logo">
+                <div class="site-logo">
+                  <a href="/" class="js-logo-clone">RushX</a>
+                </div>
+              </div>
+              <div class="main-nav d-none d-lg-block">
+                <nav
+                  class="site-navigation text-right text-md-center"
+                  role="navigation"
+                >
+                  <ul class="site-menu js-clone-nav d-none d-lg-block">
+                    <li class="{{clas}}"><a href="/">Home</a></li>
+                    <li class="has-children {{style}}">
+                      <a href="#">Cateogary</a>
+                      <ul class="dropdown">
+                        <li><a href="/WebApplications/">Web Apps</a></li>
+                        <li>
+                          <a href="/GraphicalApplications/"
+                            >Graphical Applications</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/ConsoleApplications/"
+                            >Console Applications</a
+                          >
+                        </li>
+                        <li class="has-children">
+                          <a href="#">More</a>
+                          <ul class="dropdown">
+                            <li><a href="/frontend/">FrontEnd</a></li>
+                            <li><a href="/backend/">Backend</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li class="{{shop}}"><a href="/shop">Fresh Arrivals</a></li>
+                    <li class="{{cont}}"><a href="/contact">Contact</a></li>
+                    <li class="{{abou}}"><a href="/about">About</a></li>
+                  </ul>
+                </nav>
+              </div>
+              <div class="icons">
+                <a href="#" class="icons-btn d-inline-block js-search-open"
+                  ><span class="icon-search"></span
+                ></a>
+                <a href="#" class="icons-btn d-inline-block"
+                  ><span class="icon-heart-o"></span
+                ></a>
+                <a href="/cart" class="icons-btn d-inline-block bag">
+                  <span class="icon-shopping-bag"></span>
+                  <span class="number" id="numb">0</span>
+                </a>
+                <a
+                  href="#"
+                  class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"
+                  ><span class="icon-menu"></span
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% block body %} {% endblock body %}
+
+      <footer class="site-footer custom-border-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+              <div class="block-7">
+                <h3 class="footer-heading mb-4">About Us</h3>
+                <p>
+                  We are trying to simplify the Mordern way of Purchasing Open
+                  Source Softwares where you can Just come and Get what you
+                  want.
+                </p>
+              </div>
+              <div class="block-7">
+                <form onclick="emailSubs()" name="emailSubs">
+                  <label for="email_subscribe" class="footer-heading"
+                    >Subscribe</label
+                  >
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control py-4"
+                      id="email_subscribe"
+                      placeholder="Email"
+                    />
+                    <input
+                      type="submit"
+                      class="btn btn-sm btn-primary"
+                      value="Send"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-5 ml-auto mb-5 mb-lg-0" style="right: 42px">
+              <div class="row">
+                <div class="col-md-12">
+                  <h3 class="footer-heading mb-4">Quick Links</h3>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <ul class="list-unstyled" style="margin-left: 2em">
+                    <li><a href="/WebApplications/">Web Apps</a></li>
+                    <li>
+                      <a href="/GraphicalApplications/">Desktop Applications</a>
+                    </li>
+                    <li>
+                      <a href="/ConsoleApplications/">Console Applications</a>
+                    </li>
+                    <li><a href="/cart/">Cart</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+              <div class="block-5 mb-5">
+                <h3 class="footer-heading mb-4">Contact Info</h3>
+                <ul class="list-unstyled">
+                  <li class="address">
+                    <a
+                      href="https://github.com/coderaman07"
+                      style="color: black"
+                      >@GitHub</a
+                    >
+                    and also IMS UC Hostel
+                  </li>
+                  <li class="phone">
+                    <a href="https://wa.me/+918586047520">+91-8586047520</a>
+                  </li>
+                  <li class="email">
+                    <a
+                      href="mailto:alexmercerr07@gmail.com"
+                      style="color: black"
+                      >alexmercerr07@gmail.com</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-5 mt-5 text-center">
+            <div class="col-md-12">
+              <p>
+                Copyright &copy;
+                <script>
+                  var date = new Date().getFullYear();
+                  var yesy = String(date) + " - " + String(date + 1);
+                  document.write(yesy);
+                </script>
+                All rights reserved | Made with
+                <i class="icon-heart" aria-hidden="true"></i> by
+                <a class="texttdecor" href="https://linktr.ee/coderaman07"
+                  >Aman Ojha</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/aos.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <script>
+      if (localStorage.getItem("cart") == null) {
+        var cart = {};
+      } else {
+        cart = JSON.parse(localStorage.getItem("cart"));
+      }
+
+      $(".addtoCart").click(function () {
+        var idstring = this.id.toString();
+        if (cart[idstring] != undefined) {
+          qty = cart[idstring][0] + 1;
+        } else {
+          qty = 1;
+          name = document.getElementById("name" + idstring).innerHTML;
+          price = document
+            .getElementById("price" + idstring)
+            .innerText.split(": ")[1];
+          cart[idstring] = [qty, name, price];
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        document.getElementById(idstring).innerText = "Added";
+      });
+
+      setInterval(function () {
+        if (localStorage.length < 1) {
+          document.getElementById("numb").innerHTML = 0;
+        } else {
+          let i = 0;
+          for (item in cart) {
+            i = i + 1;
+          }
+          document.getElementById("numb").innerHTML = i;
+        }
+      }, 5);
+    </script>
+  </body>
+</html>

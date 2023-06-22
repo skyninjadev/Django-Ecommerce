@@ -1,0 +1,13 @@
+{% extends "basic.html" %} {% block title %}Currently In Developement{% endblock title %}
+{% block body %} {% load static %}
+
+{% if vall %}
+Hello
+{% else %}
+<div class="container my-4 site">
+    <h3>#Sorry No Products to Display in this Section</h3>
+    <p>Sorry But I havn't made any Projects fro this Section<br />but I will be adding Projects in this section as soon as it will be ready to deploy.<br /> You can visit my <a href="https://instagram.com/aman_.dev">Instagram Account @aman_.dev</a> for more Updates.</p>
+</div>
+{% endif %}
+
+{% endblock body %}

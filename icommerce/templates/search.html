@@ -1,0 +1,69 @@
+{% extends "basic.html" %} {% block title %}Search{% endblock title %}
+{% block body %} {% load static %}
+<div class="bg-light py-3">
+
+<h3 style="margin-top: 3em;margin-left: 14em;">Search Results for : {{cat}}</h3>
+
+{% if catprods %}
+  {% for catprods in catprods %}
+      
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="border">
+                <a href="/view/{{catprods.Product_Name}}/{{catprods.id}}" class="item">
+              <img src="/media/{{catprods.image}}" alt="Image" class="img-fluid">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <a href="/view/{{catprods.Product_Name}}/{{catprods.id}}" class="item">
+            <h2 class="text-black namee" id="namep{{catprods.id}}">{{catprods.Product_Name}}</h2>
+            </a>
+            <p>{{catprods.Description}}</p>
+            <p><strong class="text-primary h4" id="pricep{{catprods.id}}">Price : Rs. {{catprods.Price}}</strong> <del>Rs. {% widthratio catprods.Price 1 3 %}</del> </p>
+            <span><button class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary addtoCart" style="color: white;" id="p{{catprods.id}}">Add To Cart</button></span>
+            <span><a href="/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">CheckOut</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% else %}
+<h5 style="margin-top: 4em;margin-left: 21em;">No Products matching with Your Entered Cateogray</h5>
+{% endif %}
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="title-section text-center col-12">
+            <h2 class="text-uppercase">More Products Related </h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 block-3 products-wrap">
+            <div class="nonloop-block-3 owl-carousel">
+              
+            {% for allprods in allprods %}
+            <div class="product">
+                <a href="/view/{{allprods.Product_Name}}/{{allprods.id}}" class="item">
+                  <img src="/media/{{allprods.image}}" alt="Image" class="img-fluid" style="height: 14em;">
+                  <div class="item-info" style="height: 10em;">
+                <a href="/view/{{allprods.Product_Name}}/{{allprods.id}}" class="item" style="display: block;">
+                    <h3>{{allprods.Product_Name}}</h3>
+                    <span class="collection d-block">{{allprods.Cateogary}}</span>
+                    <strong class="price" id="pricep{{allprods.id}}">Price: Rs. {{allprods.Price}}</strong>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock body %}
+
